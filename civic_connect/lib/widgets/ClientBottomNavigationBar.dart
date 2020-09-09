@@ -1,30 +1,30 @@
-import 'package:civic_connect/screens/user/history_screen.dart';
-import 'package:civic_connect/screens/user/home_screen.dart';
-import 'package:civic_connect/screens/user/settings_screen.dart';
-import 'package:civic_connect/screens/user/profile_screen.dart';
+import 'package:civic_connect/screens/client/history_screen.dart';
+import 'package:civic_connect/screens/client/home_screen.dart';
+import 'package:civic_connect/screens/client/profile_screen.dart';
+import 'package:civic_connect/screens/client/settings_screen.dart';
 import 'package:flutter/material.dart';
 
-class UserBottomNavigationBarController extends StatefulWidget {
-  static const String id = 'UserBottomNavigationBarController_Screen';
+class ClientBottomNavigationBarController extends StatefulWidget {
+  static const String id = 'ClientBottomNavigationBarController_Screen';
   @override
-  _UserBottomNavigationBarControllerState createState() =>
-      _UserBottomNavigationBarControllerState();
+  _ClientBottomNavigationBarControllerState createState() =>
+      _ClientBottomNavigationBarControllerState();
 }
 
-class _UserBottomNavigationBarControllerState
-    extends State<UserBottomNavigationBarController> {
+class _ClientBottomNavigationBarControllerState
+    extends State<ClientBottomNavigationBarController> {
   final List<Widget> pages = [
-    HomeScreen(
-      key: PageStorageKey('HomeScreen'),
+    ClientHomeScreen(
+      key: PageStorageKey('ClientHomeScreen'),
     ),
-    ProfileScreen(
-      key: PageStorageKey('Profile'),
+    ClientProfileScreen(
+      key: PageStorageKey('ClientProfile'),
     ),
-    HistoryScreen(
-      key: PageStorageKey('HistoryScreen'),
+    ClientHistoryScreen(
+      key: PageStorageKey('ClientHistoryScreen'),
     ),
-    SettingsScreen(
-      key: PageStorageKey('SettingsScreen'),
+    ClientSettingsScreen(
+      key: PageStorageKey('ClientSettingsScreen'),
     ),
   ];
 

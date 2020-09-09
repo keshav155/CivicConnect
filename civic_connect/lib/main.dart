@@ -1,9 +1,14 @@
+import 'package:civic_connect/screens/client/history_screen.dart';
+import 'package:civic_connect/screens/client/home_screen.dart';
+import 'package:civic_connect/screens/client/profile_screen.dart';
+import 'package:civic_connect/screens/client/settings_screen.dart';
 import 'package:civic_connect/screens/user/forum_screen.dart';
 import 'package:civic_connect/screens/user/history_screen.dart';
 import 'package:civic_connect/screens/user/home_screen.dart';
 import 'package:civic_connect/screens/user/onboarding_screen.dart';
 import 'package:civic_connect/screens/user/settings_screen.dart';
-import 'package:civic_connect/screens/user/user_screen.dart';
+import 'package:civic_connect/screens/user/profile_screen.dart';
+import 'package:civic_connect/widgets/ClientBottomNavigationBar.dart';
 import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,21 +31,26 @@ class _CivicConnectState extends State<CivicConnect> {
         // change the initialRoute here if you want to test out your screen
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          fontFamily: 'OpenSans',
         ),
 
         // change the initialRoute here if you want to test out your screen
-        initialRoute: BottomNavigationBarController.id,
+        initialRoute: ClientBottomNavigationBarController.id,
         routes: {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),
           HomeScreen.id: (context) => HomeScreen(),
           HistoryScreen.id: (context) => HistoryScreen(),
           SettingsScreen.id: (context) => SettingsScreen(),
-          UserScreen.id: (context) => UserScreen(),
+          ProfileScreen.id: (context) => ProfileScreen(),
           ForumScreen.id: (context) => ForumScreen(),
-          BottomNavigationBarController.id: (context) =>
-              BottomNavigationBarController(),
+          UserBottomNavigationBarController.id: (context) =>
+              UserBottomNavigationBarController(),
+          ClientHomeScreen.id: (context) => ClientHomeScreen(),
+          ClientHistoryScreen.id: (context) => ClientHistoryScreen(),
+          ClientSettingsScreen.id: (context) => ClientSettingsScreen(),
+          ClientProfileScreen.id: (context) => ClientProfileScreen(),
+          ClientBottomNavigationBarController.id: (context) =>
+              ClientBottomNavigationBarController(),
 
           //Builder
         }); //Material App
