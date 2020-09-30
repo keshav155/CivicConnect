@@ -6,13 +6,19 @@ import 'package:civic_connect/screens/forum_screen.dart';
 import 'package:civic_connect/screens/user/history_screen.dart';
 import 'package:civic_connect/screens/user/home_screen.dart';
 import 'package:civic_connect/screens/onboarding_screen.dart';
+import 'package:civic_connect/screens/user/location_screen.dart';
 import 'package:civic_connect/screens/user/settings_screen.dart';
 import 'package:civic_connect/screens/user/profile_screen.dart';
 import 'package:civic_connect/widgets/ClientBottomNavigationBar.dart';
 import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(CivicConnect());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(CivicConnect());
+}
 
 class CivicConnect extends StatefulWidget {
   @override
@@ -35,7 +41,7 @@ class _CivicConnectState extends State<CivicConnect> {
         ),
 
         // change the initialRoute here if you want to test out your screen
-        initialRoute: UserBottomNavigationBarController.id,
+        initialRoute: LocationScreen.id,
         routes: {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),
@@ -44,6 +50,7 @@ class _CivicConnectState extends State<CivicConnect> {
           SettingsScreen.id: (context) => SettingsScreen(),
           ProfileScreen.id: (context) => ProfileScreen(),
           ForumScreen.id: (context) => ForumScreen(),
+          LocationScreen.id: (context) => LocationScreen(),
           UserBottomNavigationBarController.id: (context) =>
               UserBottomNavigationBarController(),
           ClientHomeScreen.id: (context) => ClientHomeScreen(),

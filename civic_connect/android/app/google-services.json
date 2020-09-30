@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "865269192773",
+    "firebase_url": "https://civicconnect-79d61.firebaseio.com",
+    "project_id": "civicconnect-79d61",
+    "storage_bucket": "civicconnect-79d61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865269192773:android:d0bdac6d4d72788df6eb2c",
+        "android_client_info": {
+          "package_name": "com.group7.civic_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865269192773-odt6tp9o9gr25u7g0lu9vgh6gceg5f1c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5c6ognLKiDgABp99fu6SXUDyzs0G-FQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865269192773-odt6tp9o9gr25u7g0lu9vgh6gceg5f1c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
