@@ -31,10 +31,11 @@ class _CivicConnectState extends State<CivicConnect> {
         // change the initialRoute here if you want to test out your screen
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: "Arial",
         ),
 
         // change the initialRoute here if you want to test out your screen
-        initialRoute: HomeScreen.id,
+        initialRoute: UserBottomNavigationBarController.id,
         routes: {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),
