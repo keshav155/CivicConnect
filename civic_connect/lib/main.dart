@@ -1,3 +1,4 @@
+import 'package:civic_connect/screens/client/active_post_screen.dart';
 import 'package:civic_connect/screens/client/history_screen.dart';
 import 'package:civic_connect/screens/client/home_screen.dart';
 import 'package:civic_connect/screens/client/profile_screen.dart';
@@ -41,7 +42,7 @@ class _CivicConnectState extends State<CivicConnect> {
         ),
 
         // change the initialRoute here if you want to test out your screen
-        initialRoute: LocationScreen.id,
+        initialRoute: ClientBottomNavigationBarController.id,
         routes: {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),
@@ -53,6 +54,7 @@ class _CivicConnectState extends State<CivicConnect> {
           LocationScreen.id: (context) => LocationScreen(),
           UserBottomNavigationBarController.id: (context) =>
               UserBottomNavigationBarController(),
+          ClientActivePostScreen.id: (context) => ClientActivePostScreen(),
           ClientHomeScreen.id: (context) => ClientHomeScreen(),
           ClientHistoryScreen.id: (context) => ClientHistoryScreen(),
           ClientSettingsScreen.id: (context) => ClientSettingsScreen(),
