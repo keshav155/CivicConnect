@@ -17,57 +17,31 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.account_circle),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 10,
           ),
-          Text(
-            'Profile',
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.home),
-          ),
-          Text(
-            'Burwood',
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.school),
-          ),
-          Text(
-            'Education',
-          ),
-
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.history),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.chat),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.location_city),
+              SizedBox(width: 7),
+              Text(
+                "Burwood",
+                style: TextStyle(fontSize: 20),
               ),
             ],
           ),
         ],
       ),
-
       floatingActionButton: FloatingActionButton(
-
         onPressed: () {},
-        child: Text(
-            '✔',
+        child: Text('✔',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
-            )
-        ),
+            )),
         backgroundColor: Colors.greenAccent,
       ),
     );
