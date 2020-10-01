@@ -19,54 +19,62 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Location Screen"),
+        title: Center(child: Text("CivicConnect")),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-              child: Text(
-            "What is the name of your suburb?",
-            style: TextStyle(fontSize: 20),
-          )),
-          SizedBox(height: 20),
-          Container(
-            width: 200,
-            child: TextField(
-              controller: suburbController,
-              decoration: InputDecoration(labelText: 'Suburb name'),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+                height: 300,
+                width: 300,
+                child: Image.asset("assets/polling.png")),
+            SizedBox(height: 20),
+            Center(
+                child: Text(
+              "What is the name of your suburb?",
+              style: TextStyle(fontSize: 20),
+            )),
+            SizedBox(height: 20),
+            Container(
+              width: 200,
+              child: TextField(
+                controller: suburbController,
+                decoration: InputDecoration(labelText: 'Suburb name'),
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          new RaisedButton(
-              onPressed: () {
-                getLatestMunicipality(suburbController.text);
-                setState(() {
-                  visibility = true;
-                });
-              },
-              child: Text('Ok')),
-          SizedBox(height: 20),
-          FutureBuilder<String>(
-              future: getLatestMunicipality(
-                  suburbController.text), // function where you call your api
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                // AsyncSnapshot<Your object type>
-                if (visibility) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: Text('Please wait its loading...'));
-                  } else {
-                    if (snapshot.hasError)
-                      return Center(child: Text('Error: Suburb not found'));
-                    else
-                      return Center(
-                          child: new Text(
-                              '${snapshot.data}')); // snapshot.data  :- get your object which is pass from your downloadData() function
-                  }
-                } else
-                  return Container();
-              }),
-        ],
+            SizedBox(height: 20),
+            new RaisedButton(
+                onPressed: () {
+                  getLatestMunicipality(suburbController.text);
+                  setState(() {
+                    visibility = true;
+                  });
+                },
+                child: Text('Ok')),
+            SizedBox(height: 20),
+            FutureBuilder<String>(
+                future: getLatestMunicipality(
+                    suburbController.text), // function where you call your api
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  // AsyncSnapshot<Your object type>
+                  if (visibility) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: Text('Please wait its loading...'));
+                    } else {
+                      if (snapshot.hasError)
+                        return Center(child: Text('Error: Suburb not found'));
+                      else
+                        return Center(
+                            child: new Text(
+                                '${snapshot.data}')); // snapshot.data  :- get your object which is pass from your downloadData() function
+                    }
+                  } else
+                    return Container();
+                }),
+          ],
+        ),
       ),
     );
   }

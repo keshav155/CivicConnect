@@ -13,7 +13,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Screen"),
+        title: Text('CivicConnect'),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.location_city),
+              SizedBox(width: 7),
+              Text(
+                "Burwood",
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Text('✔',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            )),
+        backgroundColor: Colors.greenAccent,
       ),
     );
   }
