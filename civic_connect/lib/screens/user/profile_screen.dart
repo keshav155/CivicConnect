@@ -1,5 +1,6 @@
 import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = 'Profile_Screen';
@@ -12,14 +13,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     //user information
-    String userName = "Text userName";
-    String userInfo =
-        "Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, Test userInfo, ";
-    String userSex = "Test userSex";
-    String userMarital = "Test userMarital";
-    String userJob = "Test userJob";
-    String userCouncil = "Test userCouncil";
-    String userInterests = "Test userInterests";
 
     const lightBlueColor = 0xffd8f0f5; //used for background of information.
     const darkGrayColor = 0xff846f75; //used for gray color of text
@@ -37,173 +30,185 @@ class _ProfileScreenState extends State<ProfileScreen> {
         left: 10, top: 16, right: 10, bottom: 8); //border around the topic text
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Profile Screen"),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-            child: Column(children: <Widget>[
-          //Editable Profile Picture Icon.
-          GestureDetector(
-            onTap: () {}, // handle your image tap here
-            child: Image.asset(
-              'assets/EditableProfileImage.png',
-              fit: BoxFit.cover, // this is the solution for border
-              width: 130,
-              height: 130,
-            ),
-          ),
-
-          //Text above user information
-          Container(
-              padding: topicTextPadding,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('About ' + userName,
-                        style: TextStyle(color: Color(darkGrayColor))),
-                  ])),
-
-          //User's About Information
-          Container(
-              padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      //allows for multiline text, necessary if there is a lot of information
-                      child: Text(
-                        userInfo,
-                      ),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Center(child: Text("Profile")),
+        ),
+        body: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection("Users").snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              var userData = snapshot.data.docs[0].data();
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return SingleChildScrollView(
+                child: Center(
+                    child: Column(children: <Widget>[
+                  //Editable Profile Picture Icon.
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: 10, top: 30, right: 10, bottom: 8),
+                    child: GestureDetector(
+                      onTap: () {}, // handle your image tap here
+                      child: CircleAvatar(
+                          radius: 100,
+                          backgroundImage: NetworkImage(userData['ImageURL'])),
                     ),
-                  ])),
+                  ),
+                  //Text above user information
+                  Container(
+                      padding: topicTextPadding,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('About ',
+                                style: TextStyle(color: Color(darkGrayColor))),
+                          ])),
 
-          //Text above user sex
-          Container(
-              padding: topicTextPadding,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Sex', style: TextStyle(color: Color(darkGrayColor))),
-                  ])),
+                  //User's About Information
+                  Container(
+                      padding: userInformationPadding,
+                      //border around the text boxes
+                      color: Color(lightBlueColor),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              //allows for multiline text, necessary if there is a lot of information
+                              child: Text(userData['Info']),
+                            ),
+                          ])),
 
-          //User's Sex
-          Container(
-              padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        //allows for multiline text, necessary if there is a lot of information.
-                        userSex,
-                      ),
-                    ),
-                  ])),
+                  //Text above user sex
+                  Container(
+                      padding: topicTextPadding,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Sex',
+                                style: TextStyle(color: Color(darkGrayColor))),
+                          ])),
 
-          //Text above user marital
-          Container(
-              padding: topicTextPadding,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Marital Status',
-                        style: TextStyle(color: Color(darkGrayColor))),
-                  ])),
+                  //User's Sex
+                  Container(
+                      padding: userInformationPadding,
+                      //border around the text boxes
+                      color: Color(lightBlueColor),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                userData['Sex'],
+                              ),
+                            ),
+                          ])),
 
-          //User's Marital
-          Container(
-              padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        //allows for multiline text, necessary if there is a lot of information.
-                        userMarital,
-                      ),
-                    ),
-                  ])),
+                  //Text above user marital
+                  Container(
+                      padding: topicTextPadding,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Marital Status',
+                                style: TextStyle(color: Color(darkGrayColor))),
+                          ])),
 
-          //Text above user job
-          Container(
-              padding: topicTextPadding,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Job', style: TextStyle(color: Color(darkGrayColor))),
-                  ])),
+                  //User's Marital
+                  Container(
+                      padding: userInformationPadding,
+                      //border around the text boxes
+                      color: Color(lightBlueColor),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                userData['Marital Status'],
+                              ),
+                            ),
+                          ])),
 
-          //User's Job
-          Container(
-              padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      //allows for multiline text, necessary if there is a lot of information.
-                      child: Text(
-                        userJob,
-                      ),
-                    ),
-                  ])),
+                  //Text above user job
+                  Container(
+                      padding: topicTextPadding,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Job',
+                                style: TextStyle(color: Color(darkGrayColor))),
+                          ])),
 
-          //Text above user Council
-          Container(
-              padding: topicTextPadding,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Council',
-                        style: TextStyle(color: Color(darkGrayColor))),
-                  ])),
+                  //User's Job
+                  Container(
+                      padding: userInformationPadding,
+                      //border around the text boxes
+                      color: Color(lightBlueColor),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              //allows for multiline text, necessary if there is a lot of information.
+                              child: Text(
+                                userData['Job'],
+                              ),
+                            ),
+                          ])),
 
-          //User's Council
-          Container(
-              padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      //allows for multiline text, necessary if there is a lot of information.
-                      child: Text(
-                        userCouncil,
-                      ),
-                    ),
-                  ])),
+                  //Text above user Council
+                  Container(
+                      padding: topicTextPadding,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Council',
+                                style: TextStyle(color: Color(darkGrayColor))),
+                          ])),
 
-          //Text above user Interests
-          Container(
-              padding: topicTextPadding,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Interests',
-                        style: TextStyle(color: Color(darkGrayColor))),
-                  ])),
+                  //User's Council
+                  Container(
+                      padding: userInformationPadding,
+                      //border around the text boxes
+                      color: Color(lightBlueColor),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              //allows for multiline text, necessary if there is a lot of information.
+                              child: Text(
+                                userData['Council'],
+                              ),
+                            ),
+                          ])),
 
-          //User's Interests
-          Container(
-              padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      //allows for multiline text, necessary if there is a lot of information.
-                      child: Text(
-                        userInterests,
-                      ),
-                    ),
-                  ])),
-        ])),
-      ),
-    );
+                  //Text above user Interests
+                  Container(
+                      padding: topicTextPadding,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Interests',
+                                style: TextStyle(color: Color(darkGrayColor))),
+                          ])),
+
+                  //User's Interests
+                  Container(
+                      padding: userInformationPadding,
+                      //border around the text boxes
+                      color: Color(lightBlueColor),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              //allows for multiline text, necessary if there is a lot of information.
+                              child: Text(
+                                userData['Interests'],
+                              ),
+                            ),
+                          ])),
+                ])),
+              );
+            }));
   }
 }

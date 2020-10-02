@@ -31,34 +31,32 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
 
     const userInformationPadding = EdgeInsets.only(
         left: 10,
-        top: 5,
+        top: 10,
         right: 10,
-        bottom: 5); //borders around the user information
+        bottom: 10); //borders around the user information
     const topicTextPadding = EdgeInsets.only(
-        left: 10, top: 16, right: 10, bottom: 8); //border around the topic text
+        left: 10, top: 8, right: 10, bottom: 8); //border around the topic text
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Profile Screen"),
+        title: Center(child: Text("Profile")),
       ),
       body: SingleChildScrollView(
         child: Center(
             child: Column(children: <Widget>[
           //Editable Profile Picture Icon.
-          GestureDetector(
-            onTap: () {}, // handle your image tap here
-            child: Image.asset(
-              'assets/EditableProfileImage.png',
-              fit: BoxFit.cover, // this is the solution for border
-              width: 130,
-              height: 130,
-            ),
+          Image.asset(
+            'assets/EditableProfileImage.png',
+            fit: BoxFit.cover, // this is the solution for border
+            width: 130,
+            height: 130,
           ),
 
           //Text above user information
           Container(
               padding: topicTextPadding,
+              color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -69,7 +67,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //User's About Information
           Container(
               padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
+              //   color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -84,6 +82,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //Text above user sex
           Container(
               padding: topicTextPadding,
+              color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -93,7 +92,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //User's Sex
           Container(
               padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
+              //    color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -108,6 +107,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //Text above user marital
           Container(
               padding: topicTextPadding,
+              color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -118,7 +118,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //User's Marital
           Container(
               padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
+              //  color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -132,6 +132,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
 
           //Text above user job
           Container(
+              color: Color(lightBlueColor),
               padding: topicTextPadding,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -142,7 +143,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //User's Job
           Container(
               padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
+              //    color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -157,6 +158,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //Text above user Council
           Container(
               padding: topicTextPadding,
+              color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -167,7 +169,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //User's Council
           Container(
               padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
+              //     color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -182,6 +184,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //Text above user Interests
           Container(
               padding: topicTextPadding,
+              color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -192,7 +195,6 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           //User's Interests
           Container(
               padding: userInformationPadding, //border around the text boxes
-              color: Color(lightBlueColor),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[

@@ -4,10 +4,10 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class ClientActivePostScreen extends StatelessWidget {
-  static const String id = 'ActivePost_Screen';
+class ClientHistoryPostScreen extends StatelessWidget {
+  static const String id = 'HistoryPost_Screen';
   final QueryDocumentSnapshot dataPassed;
-  const ClientActivePostScreen({Key key, @required this.dataPassed})
+  const ClientHistoryPostScreen({Key key, @required this.dataPassed})
       : super(key: key);
 //  @override
 //  _ClientActivePostScreenState createState() => _ClientActivePostScreenState();
@@ -80,12 +80,7 @@ class ClientActivePostScreen extends StatelessWidget {
                 width: 380,
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Flex(
-                    direction: Axis.horizontal,
-                    children: [
-                      Flexible(child: Text(dataPassed['Description'])),
-                    ],
-                  ),
+                  child: Flexible(child: Text(dataPassed['Description'])),
                 ),
               ),
             ),
@@ -95,7 +90,7 @@ class ClientActivePostScreen extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(width: 10),
-                  Icon(Icons.data_usage),
+                  Icon(Icons.insert_chart),
                   Text(
                     "Statistics",
                   )
@@ -142,6 +137,30 @@ class ClientActivePostScreen extends StatelessWidget {
                   SizedBox(width: 5),
                   Text(dataPassed['No'].toString() + " approved the decision"),
                 ],
+              ),
+            ),
+            Container(
+              height: 30,
+              color: Color(lightBlueColor),
+              child: Row(
+                children: [
+                  SizedBox(width: 10),
+                  Icon(Icons.thumbs_up_down),
+                  SizedBox(width: 5),
+                  Text(
+                    "Outcome",
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: Container(
+                width: 380,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Flexible(child: Text(dataPassed['Outcome'])),
+                ),
               ),
             ),
           ],

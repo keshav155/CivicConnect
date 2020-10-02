@@ -16,10 +16,13 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Active Posts")),
+        title: Center(child: Text("Posts")),
       ),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection("Posts").snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection("Posts")
+              .where("Open", isEqualTo: true)
+              .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
@@ -42,18 +45,21 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                     },
                     child: Card(
                         elevation: 5,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              document.id.toString(),
-                              style: TextStyle(fontSize: 25),
-                            ),
-                            Text(
-                              document.data()['Subtitle'],
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                document.id.toString(),
+                                style: TextStyle(fontSize: 25),
+                              ),
+                              Text(
+                                document.data()['Subtitle'],
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ],
+                          ),
                         )),
                   ),
                 );
