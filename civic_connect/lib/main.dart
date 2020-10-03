@@ -14,6 +14,7 @@ import 'package:civic_connect/widgets/ClientBottomNavigationBar.dart';
 import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,11 +39,13 @@ class _CivicConnectState extends State<CivicConnect> {
         // change the initialRoute here if you want to test out your screen
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          fontFamily: "Arial",
+          textTheme: GoogleFonts.latoTextTheme(
+            Theme.of(context).textTheme,
+          ),
         ),
 
         // change the initialRoute here if you want to test out your screen
-        initialRoute: UserBottomNavigationBarController.id,
+        initialRoute: ClientBottomNavigationBarController.id,
         routes: {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),

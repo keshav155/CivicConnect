@@ -38,6 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             stream: FirebaseFirestore.instance.collection("Users").snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.data == null) return CircularProgressIndicator();
               var userData = snapshot.data.docs[0].data();
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
@@ -47,13 +48,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Column(children: <Widget>[
                   //Editable Profile Picture Icon.
                   Container(
+                    width: 280,
                     padding: EdgeInsets.only(
                         left: 10, top: 30, right: 10, bottom: 8),
-                    child: GestureDetector(
-                      onTap: () {}, // handle your image tap here
-                      child: CircleAvatar(
-                          radius: 100,
-                          backgroundImage: NetworkImage(userData['ImageURL'])),
+                    child: Stack(
+                      children: [
+                        GestureDetector(
+                            onTap: () {}, // handle your image tap here
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(125.0),
+                              child: FadeInImage(
+                                  fit: BoxFit.cover,
+                                  width: 250,
+                                  height: 250,
+                                  placeholder: AssetImage("assets/giphy.gif"),
+                                  image: NetworkImage(userData['ImageURL'])),
+                            )),
+                      ],
                     ),
                   ),
                   //Text above user information
