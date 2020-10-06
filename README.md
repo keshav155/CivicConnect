@@ -41,7 +41,7 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Future Works](#Future Works)
+* [Future Works](#Future-Works)
 * [Contributions](#contributions)
 * [License](#license)
 * [Contact](#contact)
