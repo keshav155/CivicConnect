@@ -16,16 +16,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     const lightBlueColor = 0xffd8f0f5; //used for background of information.
     const darkGrayColor = 0xff846f75; //used for gray color of text
-    const double topGap =
-        8; //between the subject line (Sex, Marital status...) and the information.
-    const double bottomGap =
-        16; //under the information, before the next subject line.
-
     const userInformationPadding = EdgeInsets.only(
-        left: 10,
-        top: 5,
-        right: 10,
-        bottom: 5); //borders around the user information
+        left: 10, top: 5, right: 10, bottom: 5); //borders around the user information
     const topicTextPadding = EdgeInsets.only(
         left: 10, top: 16, right: 10, bottom: 8); //border around the topic text
 
