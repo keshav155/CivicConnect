@@ -144,6 +144,15 @@ initialRoute: ClientBottomNavigationBarController.id,
 // Accessing the settings screen
 initialRoute: SettingsScreen.id,
 ```
+## Future Works
+We have yet to add the following and will implement it in the future:-
+<br />
+•	 New post screen for the client 
+<br />
+•	 Draft Screen for the client
+<br />
+•	 Reward system for citizens
+<br />
 
 
 
