@@ -31,7 +31,13 @@ class ClientActivePostScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, ForumScreen.id);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ForumScreen(
+                        postId: dataPassed.id,
+                      ),
+                    ));
               },
             ),
           ],

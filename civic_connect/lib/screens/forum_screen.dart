@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class ForumScreen extends StatefulWidget {
   static const String id = 'Forum_Screen';
-  const ForumScreen({Key key}) : super(key: key);
+  final String postId;
+  const ForumScreen({Key key, @required this.postId}) : super(key: key);
 
   @override
   _ForumScreenState createState() => _ForumScreenState();
@@ -12,9 +13,10 @@ class ForumScreen extends StatefulWidget {
 
 class _ForumScreenState extends State<ForumScreen> {
   final TextEditingController _controller = TextEditingController();
-  String message;
-  CrudMethods _crudMethods = new CrudMethods();
+  var _crudMethods = CrudMethods();
+  var _crudMethods2 = CrudMethods();
   QuerySnapshot forumSnapshot;
+  var forumSnapshot2;
   Widget CommentList() {
     return Container(
       child: Column(
@@ -47,9 +49,15 @@ class _ForumScreenState extends State<ForumScreen> {
     // TODO: implement initState
     super.initState();
 
-    _crudMethods.getData().then((result) {
+    _crudMethods.getData(widget.postId).then((result) {
       setState(() {
         forumSnapshot = result;
+      });
+    });
+
+    _crudMethods2.getSubtitle(widget.postId).then((result2) {
+      setState(() {
+        forumSnapshot2 = result2;
       });
     });
   }
@@ -70,7 +78,7 @@ class _ForumScreenState extends State<ForumScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Burwood Library',
+                      widget.postId,
                       style:
                           TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                     ),
@@ -78,7 +86,9 @@ class _ForumScreenState extends State<ForumScreen> {
                       height: 10,
                     ),
                     Text(
-                        'Reviewing the decision open library open on 24th December',
+                        forumSnapshot2 != null
+                            ? forumSnapshot2.data()['Subtitle'].toString()
+                            : ('Loading...'),
                         style: TextStyle(
                           fontSize: 18,
                         ))
@@ -154,18 +164,18 @@ class _ForumScreenState extends State<ForumScreen> {
 }
 
 class CrudMethods {
-  getData() async {
-    print(FirebaseFirestore.instance
-        .collection("Posts")
-        .doc('Burwood Library')
-        .collection('Discussion Forum')
-        .doc('User1')
-        .get()
-        .toString());
+  getData(postId) async {
     return await FirebaseFirestore.instance
         .collection("Posts")
-        .doc('Burwood Library')
+        .doc(postId)
         .collection('Discussion Forum')
+        .get();
+  }
+
+  getSubtitle(postId) async {
+    return await FirebaseFirestore.instance
+        .collection("Posts")
+        .doc(postId)
         .get();
   }
 }
