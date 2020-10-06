@@ -1,3 +1,4 @@
+import 'package:civic_connect/screens/forum_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -20,7 +21,21 @@ class ClientActivePostScreen extends StatelessWidget {
     var closingDate = dateTimeConverter(dataPassed);
     return Scaffold(
       appBar: AppBar(
-        title: Text(dataPassed.id),
+        title: Row(
+          children: [
+            Text(dataPassed.id),
+            Spacer(),
+            IconButton(
+              icon: Icon(
+                Icons.forum,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, ForumScreen.id);
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
