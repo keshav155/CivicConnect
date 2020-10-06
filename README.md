@@ -73,6 +73,10 @@ Our solution will target the main problems: -
 For our target audience being adults aging over 18, our design is meant to be __simple__ and __minimalistic__ , not requiring any fancy plugins, but mostly the standard Flutter ones and some 3rd party ones which have been verified to work well in the flutter community, helping us develop our application faster.
 
 <br />
+
+This project can be developed through usage of Android Studio with mobile emulator. The code can also be written through Visual Studio Code but will require an android device connected to the PC for debugging process, since it does not have support for emulator.
+
+<br />
 Images for the onboarding screen were taken from this <a href="https://www.flaticon.com/packs/politics-18?word=govern">flaticon pack</a>
 <br />
 Icons throughout the app which are noticeable in most of the screens were taken from <a href="https://material.io/resources/icons/?style=baseline">materials.io</a>
