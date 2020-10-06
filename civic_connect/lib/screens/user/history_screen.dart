@@ -1,5 +1,9 @@
+import 'package:civic_connect/screens/client/active_post_screen.dart';
+import 'package:civic_connect/screens/client/history_post_screen.dart';
 import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:civic_connect/screens/user/history_post_screen.dart';
 
 class HistoryScreen extends StatefulWidget {
   static const String id = 'History_Screen';
@@ -9,313 +13,61 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  QueryDocumentSnapshot dataToPass;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("History"),
+        title: Center(child: Text("History")),
       ),
-      body: ListView(children: [
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(
-              '4 contributions',
-              style: TextStyle(fontSize: 15),
-            ),
-          ),
-          decoration: BoxDecoration(color: Colors.lightBlue),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(20.0),
-              child: ExpansionTile(
-                title: Text(
-                  'Burwood Library',
-                  style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                subtitle: Text(
-                    'Reviewing the decision open library open on 24th December',
-                    style: TextStyle(fontSize: 18, color: Colors.black)),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                            'Reviewing the decision open library open on 24th December',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          'Your vote',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        Text('You voted NO',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        Text(
-                          'Outcome',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text('78% voted NO',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        Text('22% voted YES',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text('The Burwood Council made the decision to keep the library closed till further notice with respect to the stage 4 restrictions',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                      ],
-                    ),
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection("Posts")
+              .where("Open", isEqualTo: false)
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            return ListView(
+              children: snapshot.data.docs.map((document) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      dataToPass = document;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UserHistoryPostScreen(
+                              dataPassed: document,
+                            ),
+                          ));
+                    },
+                    child: Card(
+                        elevation: 5,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                document.id.toString(),
+                                style: TextStyle(fontSize: 25),
+                              ),
+                              Text(
+                                document.data()['Subtitle'],
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ],
+                          ),
+                        )),
                   ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-            ),
-            Container(
-              margin: EdgeInsets.all(20.0),
-              child: ExpansionTile(
-                title: Text(
-                  'Extension of Parking lot',
-                  style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                subtitle: Text(
-                    'Request to extend the parking lot at 65 Avenue',
-                    style: TextStyle(fontSize: 18, color: Colors.black)),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                            'Request to extend the parking lot at 65 Avenue',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          'Your vote',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        Text('You voted -',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        Text(
-                          'Outcome',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text('-% voted NO',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        Text('-% voted YES',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text('The Burwood Council made the decision to -',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-            ),
-            Container(
-              margin: EdgeInsets.all(20.0),
-              child: ExpansionTile(
-                title: Text(
-                  'Aquatic Centre',
-                  style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                subtitle: Text(
-                    'Petition to reduce fees for swimming classes',
-                    style: TextStyle(fontSize: 18, color: Colors.black)),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                            'Petition to reduce fees for swimming classes',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          'Your vote',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        Text('You voted -',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        Text(
-                          'Outcome',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text('-% voted NO',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        Text('-% voted YES',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text('The Burwood Council made the decision to -',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-            ),
-            Container(
-              margin: EdgeInsets.all(20.0),
-              child: ExpansionTile(
-                title: Text(
-                  'Bins and Waste',
-                  style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                subtitle: Text(
-                    'Petition to have 2 days for garbage collection per week',
-                    style: TextStyle(fontSize: 18, color: Colors.black)),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                            'Petition to have 2 days for garbage collection per week',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          'Your vote',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        Text('You voted -',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        Text(
-                          'Outcome',
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text('-% voted NO',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        Text('-% voted YES',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text('The Burwood Council made the decision to -',
-                            style: TextStyle(
-                              fontSize: 18,
-                            )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-            ),
-          ],
-        ),
-      ]),
+                );
+              }).toList(),
+            );
+          }),
     );
   }
 }

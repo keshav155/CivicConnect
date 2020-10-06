@@ -4,6 +4,7 @@ import 'package:civic_connect/screens/client/home_screen.dart';
 import 'package:civic_connect/screens/client/profile_screen.dart';
 import 'package:civic_connect/screens/client/settings_screen.dart';
 import 'package:civic_connect/screens/forum_screen.dart';
+import 'package:civic_connect/screens/user/history_post_screen.dart';
 import 'package:civic_connect/screens/user/history_screen.dart';
 import 'package:civic_connect/screens/user/home_screen.dart';
 import 'package:civic_connect/screens/onboarding_screen.dart';
@@ -57,6 +58,7 @@ class _CivicConnectState extends State<CivicConnect> {
           LocationScreen.id: (context) => LocationScreen(),
           UserBottomNavigationBarController.id: (context) =>
               UserBottomNavigationBarController(),
+          UserHistoryPostScreen.id: (context) => UserHistoryPostScreen(),
           ClientActivePostScreen.id: (context) => ClientActivePostScreen(),
           ClientHomeScreen.id: (context) => ClientHomeScreen(),
           ClientHistoryScreen.id: (context) => ClientHistoryScreen(),
