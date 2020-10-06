@@ -16,6 +16,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Center(child: Text("Posts")),
       ),
       body: StreamBuilder(

@@ -18,6 +18,7 @@ class _ClientHistoryScreenState extends State<ClientHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("History")),
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance

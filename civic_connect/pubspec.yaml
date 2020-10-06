@@ -35,6 +35,7 @@ dependencies:
   percent_indicator: ^2.1.7+4
   google_fonts: ^1.1.0
   uuid: ^2.0.2
+  introduction_screen: ^1.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

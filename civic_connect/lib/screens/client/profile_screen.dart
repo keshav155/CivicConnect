@@ -40,6 +40,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Center(child: Text("Profile")),
       ),
       body: SingleChildScrollView(

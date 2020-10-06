@@ -19,15 +19,17 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("CivicConnect")),
+        centerTitle: true,
+        title: Container(child: Text("CivicConnect")),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 80),
             Container(
-                height: 300,
-                width: 300,
+                height: 200,
+                width: 200,
                 child: Image.asset("assets/polling.png")),
             SizedBox(height: 20),
             Center(
@@ -50,6 +52,10 @@ class _LocationScreenState extends State<LocationScreen> {
                   setState(() {
                     visibility = true;
                   });
+                  Timer(Duration(seconds: 3), () {
+                    Navigator.pushReplacementNamed(
+                        context, UserBottomNavigationBarController.id);
+                  });
                 },
                 child: Text('Ok')),
             SizedBox(height: 20),
@@ -67,7 +73,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         return Center(child: Text('Error: Suburb not found'));
                       else
                         return Center(
-                            child: new Text(
+                            child: new Text("You are part of the " +
                                 '${snapshot.data}')); // snapshot.data  :- get your object which is pass from your downloadData() function
                     }
                   } else

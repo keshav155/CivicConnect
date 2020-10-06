@@ -32,10 +32,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Center(child: Text("Profile")),
         ),
         body: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection("Users").snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection("Users")
+                .where("Role", isEqualTo: "Citizen")
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.data == null) return CircularProgressIndicator();

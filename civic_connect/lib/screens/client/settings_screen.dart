@@ -13,6 +13,7 @@ class _ClientSettingsScreenState extends State<ClientSettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("Settings")),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
