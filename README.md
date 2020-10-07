@@ -173,6 +173,8 @@ initialRoute: ClientBottomNavigationBarController.id,
 // Accessing the settings screen
 initialRoute: SettingsScreen.id,
 ```
+- While in the location screen, make sure your the first letter of your suburb is Capitalised like <b>B</b>urwood , <b>O</b>akleigh , <b>F</b>rankston etc. 
+
 ## Future Works
 We have yet to add the following and will implement it in the future:-
 <br />
