@@ -76,12 +76,34 @@ For our target audience being adults aging over 18, our design is meant to be __
 
 This project can be developed through usage of Android Studio with mobile emulator. The code can also be written through Visual Studio Code but will require an android device connected to the PC for debugging process, since it does not have support for emulator.
 
+<p float="left">
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/UserProfileScreen.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/ClientProfileScreen.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/UserSuburb.png" width="150" /> 
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/ClientSettings.png" width="150" />
+</p>
+
+<p float="left">
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/ClientBottomNavigationBarController.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/ColesVoteScreen.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/BurwoodVoteScreen.png" width="150" /> 
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/ClientHistoryNews.png" width="150"/>
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/UserHistoryDiscussion.png" width="150" />
+</p>
+
 <br />
 Images for the onboarding screen were taken from this <a href="https://www.flaticon.com/packs/politics-18?word=govern">flaticon pack</a>
+
+<p float="left">
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/Onboard1.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/Onboard2.png" width="150" /> 
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/Onboard3.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/Onboard4.png" width="150" />
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/Onboard5.png" width="150" />
+</p>
+
 <br />
 Icons throughout the app which are noticeable in most of the screens were taken from <a href="https://material.io/resources/icons/?style=baseline">materials.io</a>
-
-
 
 
 ### Built With
@@ -188,6 +210,7 @@ We have yet to add the following and will implement it in the future:-
 <br />
 - Developing the forum screen and connecting it with the back-end of the application with a nested collection
 - Developing Discussion Forrum collection in firestore and user persona
+- Edit Readme file
 
 [@ Wei Neng Chu](mailto:wnchu@deakin.edu.au)
 <br />
