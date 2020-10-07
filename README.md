@@ -182,6 +182,7 @@ We have yet to add the following and will implement it in the future:-
 [@ Brendan Woods](mailto:bjwoods@deakin.edu.au)
 <br />
 - Developing the profile screen as well as taking care of personas 
+- Developing the storage section of the firestore, allowing for images to be uploaded and for users to change profile pictures.
 
 [@ Quoc Thing Mai](mailto:qtmai@deakin.edu.au)
 <br />
