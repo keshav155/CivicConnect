@@ -184,6 +184,8 @@ We have yet to add the following and will implement it in the future:-
 <br />
 •	 Reward system for citizens
 <br />
+•	 A more sophisticated system as done over [here](https://github.com/safariman98/voting_extra) by Kingston
+<br />
 
 
 
