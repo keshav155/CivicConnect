@@ -50,7 +50,7 @@ class _CivicConnectState extends State<CivicConnect> {
         ),
 
         // change the initialRoute here if you want to test out your screen
-        initialRoute: LocationScreen.id,
+        initialRoute: ClientBottomNavigationBarController.id,
         routes: {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),
