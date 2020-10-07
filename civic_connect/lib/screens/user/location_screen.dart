@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:civic_connect/widgets/shared_widgets.dart';
 
 class LocationScreen extends StatefulWidget {
   static const String id = 'Location_Screen';
@@ -46,18 +47,10 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
             ),
             SizedBox(height: 20),
-            new RaisedButton(
-                onPressed: () {
-                  getLatestMunicipality(suburbController.text);
-                  setState(() {
-                    visibility = true;
-                  });
-                  Timer(Duration(seconds: 3), () {
-                    Navigator.pushReplacementNamed(
-                        context, UserBottomNavigationBarController.id);
-                  });
-                },
-                child: Text('Ok')),
+            LoginButton(
+              onPressed: () => signIn(context),
+              label: "Ok",
+            ),
             SizedBox(height: 20),
             FutureBuilder<String>(
                 future: getLatestMunicipality(
@@ -93,4 +86,11 @@ Future<String> getLatestMunicipality(String enteredText) async {
       .get();
 
   return variable.data()['Municipality'].toString();
+}
+
+void signIn(BuildContext context) {
+  Timer(Duration(seconds: 3), () {
+    Navigator.pushReplacementNamed(
+        context, UserBottomNavigationBarController.id);
+  });
 }
