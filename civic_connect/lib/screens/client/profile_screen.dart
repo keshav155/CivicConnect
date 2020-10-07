@@ -45,7 +45,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
 
       if(_imageFile != null)
       {
-        //upload image to firebase storage.
+        //below is Future function to change the file link to the new fileURL
         Future<void> updateImage(String fileURL) {
           FirebaseFirestore.instance
               .collection("Users")
@@ -57,6 +57,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           return null;
         }
 
+        //below uploads the image to the firebase storage 'users/' section
         StorageReference storageReference = FirebaseStorage.instance
             .ref()
             .child('user/${basename(_imageFile.path)}}');
@@ -65,7 +66,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
         print('File Uploaded');
         storageReference.getDownloadURL().then((fileURL) {
           setState(() {
-            updateImage(fileURL);
+            updateImage(fileURL); //calls code the above future function.
           });
         });
       }
