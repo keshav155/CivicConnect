@@ -7,6 +7,7 @@ import 'package:civic_connect/screens/forum_screen.dart';
 import 'package:civic_connect/screens/user/history_post_screen.dart';
 import 'package:civic_connect/screens/user/history_screen.dart';
 import 'package:civic_connect/screens/user/home_screen.dart';
+import 'package:civic_connect/screens/user/result_screen.dart';
 import 'package:civic_connect/screens/onboarding_screen.dart';
 import 'package:civic_connect/screens/user/location_screen.dart';
 import 'package:civic_connect/screens/user/settings_screen.dart';
@@ -16,6 +17,9 @@ import 'package:civic_connect/widgets/UserBottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:civic_connect/state/vote.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +55,7 @@ class _CivicConnectState extends State<CivicConnect> {
           // Define the routes here
           OnboardingScreen.id: (context) => OnboardingScreen(),
           HomeScreen.id: (context) => HomeScreen(),
+          ResultScreen.id: (context) => ResultScreen(),
           HistoryScreen.id: (context) => HistoryScreen(),
           SettingsScreen.id: (context) => SettingsScreen(),
           ProfileScreen.id: (context) => ProfileScreen(),
