@@ -25,8 +25,10 @@
 
 
 # CivicConnect
-<br />
-<br />
+<p float="center">
+  <img src="https://github.com/keshav155/CivicConnect/blob/master/screenshots/banner.jpg" />
+</p>
+
 <t> <i> <font size=6>An app which connects local councils with their citizens </font> </i> </t>
 <br />
 <br />
