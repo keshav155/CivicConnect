@@ -187,6 +187,7 @@ We have yet to add the following and will implement it in the future:-
 [@ Quoc Thing Mai](mailto:qtmai@deakin.edu.au)
 <br />
 - Developing the forum screen and connecting it with the back-end of the application with a nested collection
+- Developing Discussion Forrum collection in firestore and user persona
 
 [@ Wei Neng Chu](mailto:wnchu@deakin.edu.au)
 <br />
